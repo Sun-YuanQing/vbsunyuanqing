@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>淘宝网的TAB选项卡</title>
+<style>
+body {font-size:12px;}
+ul.TabBarLevel1{
+	list-style:none;
+	margin:0;
+	padding:0;
+	height:29px;
+	background-image:url(/jscss/demoimg/200906/tabbar_level1_bk.gif);
+}
+ul.TabBarLevel1 li{
+	float:left;
+	padding:0;
+	height:29px;
+	margin-right:1px;
+	background:url(/jscss/demoimg/200906/tabbar_level1_slice_left_bk.gif) left top no-repeat;
+}
+ul.TabBarLevel1 li a{
+	display:block;
+	line-height:29px;
+	padding:0 20px;
+	color:#333;
+	background:url(/jscss/demoimg/200906/tabbar_level1_slice_right_bk.gif) right top no-repeat;
+	white-space: nowrap;
+}
+ul.TabBarLevel1 li.Selected{
+	background:url(/jscss/demoimg/200906/tabbar_level1_slice_selected_left_bk.gif) left top no-repeat;
+}
+ul.TabBarLevel1 li.Selected a{
+	background:url(http://pics.taobao.com/2k5/sys/component/tabbar_level1_slice_selected_right_bk.gif) right top no-repeat;
+}
+
+ul.TabBarLevel1 li a:link,ul.TabBarLevel1 li a:visited{
+	color:#333;
+}
+ul.TabBarLevel1 li a:hover,ul.TabBarLevel1 li a:active{
+	color:#F30;
+	text-decoration:none;
+}
+ul.TabBarLevel1 li.Selected a:link,ul.TabBarLevel1 li.Selected a:visited{
+	color:#000;
+}
+ul.TabBarLevel1 li.Selected a:hover,ul.TabBarLevel1 li.Selected a:active{
+	color:#F30;
+	text-decoration:none;
+}
+div.HackBox {
+  padding : 2px 2px ;
+  border-left: 2px solid #6697CD;
+  border-right: 2px solid #6697CD;
+  border-bottom: 2px solid #6697CD;
+}
+
+</style>
+</head>
+<body>
+<div id="Whatever">
+	<ul class="TabBarLevel1" id="TabPage1">
+		<li id="Tab1"><a href="#" onclick="javascript:switchTab('TabPage1','Tab1');">宝贝详情</a></li>
+		<li  id="Tab2" class="Selected"><a href="#" onclick="javascript:switchTab('TabPage1','Tab2');">其他信息</a></li>
+		<li  id="Tab3"><a href="#" onclick="javascript:switchTab('TabPage1','Tab3');">出价记录</a></li>
+		<li  id="Tab4"><a href="#" onclick="javascript:switchTab('TabPage1','Tab4');">留言簿</a></li>
+	</ul>
+</div>
+<script language="JavaScript">
+
+function switchTab(tabpage,tabid){
+        var oItem = document.getElementById(tabpage);   
+	for(var i=0;i<oItem.children.length;i++){
+		var x = oItem.children(i);	
+		x.className = "";
+		var y = x.getElementsByTagName('a');
+		y[0].style.color="#333333";
+	}	
+	document.getElementById(tabid).className = "Selected";
+}
+</script>
+</body>
+</html>

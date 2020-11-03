@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <style>
+        #msgDiv {
+            z-index: 10001;
+            width: 95%;
+            height: 50%;
+            background: white;
+            border: #336699 1px solid;
+            position: absolute;
+            /* left:50%;*/
+            top: 20%;
+            font-size: 12px;
+            /*  margin-left:-225px;*/
+            display: none;
+        }
+
+        #bgDiv {
+            display: none;
+            position: absolute;
+            z-index: 100;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            background-color: #777;
+            filter: progid:DXImageTransform.Microsoft.Alpha(style=3,opacity=25,finishOpacity=75);
+            opacity: 0.6;
+        }
+    </style>
+    <script type="text/javascript">
+        function showDetail() {//show detail
+            //msgDiv
+            var msgDiv = document.getElementById("msgDiv");
+            //                        -75
+            msgDiv.style.marginTop = -7 + document.documentElement.scrollTop + "px";
+            //bgDiv
+            var bgDiv = document.getElementById("bgDiv");
+            bgDiv.style.width = document.body.offsetwidth + "px";
+            bgDiv.style.height = screen.height + "px";
+            //msgShut 点击关闭
+            var msgShut = document.getElementById("msgShut");
+            msgShut.onclick = function () {
+                bgDiv.style.display = msgDiv.style.display = "none";   //关闭
+            }
+            //content
+            msgDiv.style.display = bgDiv.style.display = "block";
+            var msgDetail = document.getElementById("msgDetail");
+            msgDetail.innerHTML = "<p style='line-height:50px;font-size:30px;text-align:center'>显示框中的内容</p>";
+        }
+    </script>
+</head>
+<body>
+    <div id="msgDiv">
+        <div id="msgShut" style="border: 1px solid #FFB400;">关闭</div>
+        <div id="msgDetail"></div>
+    </div>
+    <div id="bgDiv"></div>
+    <!-- 背景遮盖 -->
+    <p><a href="#" onclick="showDetail()">点击我看看</a></p>
+    <div class="ai-treenav">
+        <ul>
+            <li class="mui-table-view-cell mui-collapse mui-active"><a class="mui-navigate-right" id="a_movd_dnad_nbr_HSA18110073">
+                <span class="mui-badge mui-badge-danger ">12</span> 客户:QT-614A 单号:HSA18110073</a>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_0">
+                    <p id="p_pt_desc_HSA18110073_0">275LW-4\偏心件\A镀亮镍</p>
+                    <p><span id="">物料编码:</span><span id="p_dnad_part_HSA18110073_0">911-139000-X8</span>   <span id="Span1">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_0">600000件</span></p>
+                    <p><span id="Span2">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_0">0</span>    <span id="Span3">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_0">1198214</span></p>
+                    <p><span id="Span4">未送数量:</span><span id="p_dnad_min_HSA18110073_0">600000</span>     <span id="Span5">已备货:</span><span id="p_HSA18110073_0">0</span></p>
+                    <p><span id="Span6">备注:</span><span id="p_rmks_HSA18110073_0">志邦   宇豪我方付    用蛇皮袋装</span></p>
+                    <p><span id="Span7">储位:</span><span id="p_ptp1_char1_HSA18110073_0">H31-05-123/221</span>  <span id="p_dnad_line_HSA18110073_0" style="display: none;">70</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_0" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[600000]" value="600000">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_0" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_1">
+                    <p id="p_pt_desc_HSA18110073_1">303UB16\层板托\AA01白色\配303UB19-00-2A螺钉(螺纹长7mm)</p>
+                    <p><span id="Span8">物料编码:</span><span id="p_dnad_part_HSA18110073_1">919-031001-01</span>   <span id="Span9">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_1">5000套</span></p>
+                    <p><span id="Span10">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_1">0</span>    <span id="Span11">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_1">0</span></p>
+                    <p><span id="Span12">未送数量:</span><span id="p_dnad_min_HSA18110073_1">5000</span>     <span id="Span13">已备货:</span><span id="p_HSA18110073_1">0</span></p>
+                    <p><span id="Span14">备注:</span><span id="p_rmks_HSA18110073_1">志邦   宇豪我方付   10月30号发货</span></p>
+                    <p><span id="Span15">储位:</span><span id="p_ptp1_char1_HSA18110073_1">303UB16 A01在H32-38-713配303UB19-00-2A在H32-41-324</span>  <span id="p_dnad_line_HSA18110073_1" style="display: none;">20</span></p>
+                    <p class="mui-checkbox"><a name="a_HSA18110073_1" class="mui-btn  mui-icon mui-icon-search btn-ifn " style="margin-bottom: 0px; right: 1px; line-height: 1; float: right;">无在制/无待检数</a></p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_2">
+                    <p id="p_pt_desc_HSA18110073_2">303UB16\层板托\AA01白色\配303UB19-00-2A螺钉(螺纹长7mm)</p>
+                    <p><span id="Span16">物料编码:</span><span id="p_dnad_part_HSA18110073_2">919-031001-01</span>   <span id="Span17">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_2">50000套</span></p>
+                    <p><span id="Span18">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_2">0</span>    <span id="Span19">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_2">0</span></p>
+                    <p><span id="Span20">未送数量:</span><span id="p_dnad_min_HSA18110073_2">50000</span>     <span id="Span21">已备货:</span><span id="p_HSA18110073_2">0</span></p>
+                    <p><span id="Span22">备注:</span><span id="p_rmks_HSA18110073_2">志邦   宇豪我方付</span></p>
+                    <p><span id="Span23">储位:</span><span id="p_ptp1_char1_HSA18110073_2">303UB16 A01在H32-38-713配303UB19-00-2A在H32-41-324</span>  <span id="p_dnad_line_HSA18110073_2" style="display: none;">100</span></p>
+                    <p class="mui-checkbox"><a name="a_HSA18110073_2" class="mui-btn  mui-icon mui-icon-search btn-ifn " style="margin-bottom: 0px; right: 1px; line-height: 1; float: right;">无在制/无待检数</a></p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_3">
+                    <p id="p_pt_desc_HSA18110073_3">303UB16\层板托\AA03棕色\配303UB19-00-2A螺钉(螺纹长7mm)</p>
+                    <p><span id="Span24">物料编码:</span><span id="p_dnad_part_HSA18110073_3">919-031001-03</span>   <span id="Span25">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_3">20000套</span></p>
+                    <p><span id="Span26">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_3">0</span>    <span id="Span27">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_3">0</span></p>
+                    <p><span id="Span28">未送数量:</span><span id="p_dnad_min_HSA18110073_3">20000</span>     <span id="Span29">已备货:</span><span id="p_HSA18110073_3">0</span></p>
+                    <p><span id="Span30">备注:</span><span id="p_rmks_HSA18110073_3">志邦家居   宇豪我方付</span></p>
+                    <p><span id="Span31">储位:</span><span id="p_ptp1_char1_HSA18110073_3">303UB16 A03在H32-40-511配303UB19-00-2A在H32-41-324</span>  <span id="p_dnad_line_HSA18110073_3" style="display: none;">120</span></p>
+                    <p class="mui-checkbox"><a name="a_HSA18110073_3" class="mui-btn  mui-icon mui-icon-search btn-ifn " style="margin-bottom: 0px; right: 1px; line-height: 1; float: right;">无在制/无待检数</a></p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_4">
+                    <p id="p_pt_desc_HSA18110073_4">308BG1\拉手(CC=128)\A镀亮铬</p>
+                    <p><span id="Span32">物料编码:</span><span id="p_dnad_part_HSA18110073_4">920-156000-XE</span>   <span id="Span33">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_4">600件</span></p>
+                    <p><span id="Span34">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_4">0</span>    <span id="Span35">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_4">1950</span></p>
+                    <p><span id="Span36">未送数量:</span><span id="p_dnad_min_HSA18110073_4">600</span>     <span id="Span37">已备货:</span><span id="p_HSA18110073_4">0</span></p>
+                    <p><span id="Span38">备注:</span><span id="p_rmks_HSA18110073_4">志邦   宇豪我方付   10月30号发货</span></p>
+                    <p><span id="Span39">储位:</span><span id="p_ptp1_char1_HSA18110073_4">H32-07-522</span>  <span id="p_dnad_line_HSA18110073_4" style="display: none;">10</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_4" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[600]" value="600">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_4" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_5">
+                    <p id="p_pt_desc_HSA18110073_5">308BG1\拉手(CC=128)\A镀亮铬</p>
+                    <p><span id="Span40">物料编码:</span><span id="p_dnad_part_HSA18110073_5">920-156000-XE</span>   <span id="Span41">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_5">2000件</span></p>
+                    <p><span id="Span42">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_5">0</span>    <span id="Span43">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_5">1950</span></p>
+                    <p><span id="Span44">未送数量:</span><span id="p_dnad_min_HSA18110073_5">2000</span>     <span id="Span45">已备货:</span><span id="p_HSA18110073_5">0</span></p>
+                    <p><span id="Span46">备注:</span><span id="p_rmks_HSA18110073_5">志邦   宇豪我方付</span></p>
+                    <p><span id="Span47">储位:</span><span id="p_ptp1_char1_HSA18110073_5">H32-07-522</span>  <span id="p_dnad_line_HSA18110073_5" style="display: none;">40</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_5" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[1950]" value="1950">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_5" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a><a onclick="btn_grn_mstr(this.name)" name="a_HSA18110073_5" class="mui-btn  mui-icon mui-icon-search btn-ifn " style="margin-bottom: 0px; right: 1px; line-height: 1; float: right;">IQC检验入库</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_6">
+                    <p id="p_pt_desc_HSA18110073_6">308DA1\拉手\A镀厚镍+中部拉丝+叻架\配No.8-32UNCx24.5英制螺钉</p>
+                    <p><span id="Span48">物料编码:</span><span id="p_dnad_part_HSA18110073_6">920-200011-U1</span>   <span id="Span49">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_6">800件</span></p>
+                    <p><span id="Span50">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_6">0</span>    <span id="Span51">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_6">1033</span></p>
+                    <p><span id="Span52">未送数量:</span><span id="p_dnad_min_HSA18110073_6">800</span>     <span id="Span53">已备货:</span><span id="p_HSA18110073_6">0</span></p>
+                    <p><span id="Span54">备注:</span><span id="p_rmks_HSA18110073_6">志邦家居   宇豪我方付</span></p>
+                    <p><span id="Span55">储位:</span><span id="p_ptp1_char1_HSA18110073_6">H33-08-204</span>  <span id="p_dnad_line_HSA18110073_6" style="display: none;">110</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_6" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[800]" value="800">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_6" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_7">
+                    <p id="p_pt_desc_HSA18110073_7">308EM1\拉手\A镀亮铬</p>
+                    <p><span id="Span56">物料编码:</span><span id="p_dnad_part_HSA18110073_7">920-306000-X8</span>   <span id="Span57">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_7">2000件</span></p>
+                    <p><span id="Span58">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_7">0</span>    <span id="Span59">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_7">405</span></p>
+                    <p><span id="Span60">未送数量:</span><span id="p_dnad_min_HSA18110073_7">2000</span>     <span id="Span61">已备货:</span><span id="p_HSA18110073_7">0</span></p>
+                    <p><span id="Span62">备注:</span><span id="p_rmks_HSA18110073_7">志邦   宇豪我方付</span></p>
+                    <p><span id="Span63">储位:</span><span id="p_ptp1_char1_HSA18110073_7">H32-07-711</span>  <span id="p_dnad_line_HSA18110073_7" style="display: none;">30</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_7" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[405]" value="405">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_7" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a><a onclick="btn_grn_mstr(this.name)" name="a_HSA18110073_7" class="mui-btn  mui-icon mui-icon-search btn-ifn " style="margin-bottom: 0px; right: 1px; line-height: 1; float: right;">IQC检验入库</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_8">
+                    <p id="p_pt_desc_HSA18110073_8">308WJ2\拉手\A镀珍珠叻</p>
+                    <p><span id="Span64">物料编码:</span><span id="p_dnad_part_HSA18110073_8">920-087000-XA</span>   <span id="Span65">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_8">800件</span></p>
+                    <p><span id="Span66">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_8">0</span>    <span id="Span67">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_8">838</span></p>
+                    <p><span id="Span68">未送数量:</span><span id="p_dnad_min_HSA18110073_8">800</span>     <span id="Span69">已备货:</span><span id="p_HSA18110073_8">0</span></p>
+                    <p><span id="Span70">备注:</span><span id="p_rmks_HSA18110073_8">志邦   宇豪我方付</span></p>
+                    <p><span id="Span71">储位:</span><span id="p_ptp1_char1_HSA18110073_8">H32-06-622</span>  <span id="p_dnad_line_HSA18110073_8" style="display: none;">50</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_8" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[800]" value="800">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_8" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_9">
+                    <p id="p_pt_desc_HSA18110073_9">320B\φ60线盒\B银灰色\带黑色橡胶件</p>
+                    <p><span id="Span72">物料编码:</span><span id="p_dnad_part_HSA18110073_9">932-008101-YG</span>   <span id="Span73">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_9">1500件</span></p>
+                    <p><span id="Span74">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_9">0</span>    <span id="Span75">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_9">1534</span></p>
+                    <p><span id="Span76">未送数量:</span><span id="p_dnad_min_HSA18110073_9">1500</span>     <span id="Span77">已备货:</span><span id="p_HSA18110073_9">0</span></p>
+                    <p><span id="Span78">备注:</span><span id="p_rmks_HSA18110073_9">志邦   宇豪我方付    </span></p>
+                    <p><span id="Span79">储位:</span><span id="p_ptp1_char1_HSA18110073_9">H32-02-111</span>  <span id="p_dnad_line_HSA18110073_9" style="display: none;">60</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_9" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[1500]" value="1500">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_9" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_10">
+                    <p id="p_pt_desc_HSA18110073_10">LD019-3\球头螺杆\A镀蓝锌\M6xφ7x37.5</p>
+                    <p><span id="Span80">物料编码:</span><span id="p_dnad_part_HSA18110073_10">310-120233-0X5</span>   <span id="Span81">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_10">800000件</span></p>
+                    <p><span id="Span82">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_10">0</span>    <span id="Span83">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_10">543850</span></p>
+                    <p><span id="Span84">未送数量:</span><span id="p_dnad_min_HSA18110073_10">800000</span>     <span id="Span85">已备货:</span><span id="p_HSA18110073_10">0</span></p>
+                    <p><span id="Span86">备注:</span><span id="p_rmks_HSA18110073_10">志邦   宇豪我方付    用蛇皮袋装</span></p>
+                    <p>
+                        <span id="Span87">储位:</span><span id="p_ptp1_char1_HSA18110073_10">H31-06-611/612/613</span>
+                        <span id="p_dnad_line_HSA18110073_10" style="display: none;">80</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_10" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[543850]" value="543850">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_10" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a><a onclick="btn_grn_mstr(this.name)" name="a_HSA18110073_10" class="mui-btn  mui-icon mui-icon-search btn-ifn " style="margin-bottom: 0px; right: 1px; line-height: 1; float: right;">IQC检验入库</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+                <div class=" mui-collapse-content  " id="div_HSA18110073_11">
+                    <p id="p_pt_desc_HSA18110073_11">LM010\预埋螺母\A本色</p>
+                    <p><span id="Span88">物料编码:</span><span id="p_dnad_part_HSA18110073_11">913-010000-00</span>   <span id="Span89">&nbsp;&nbsp;&nbsp;送货数量:</span><span id="p_dnad_qty_ship_HSA18110073_11">500000件</span></p>
+                    <p><span id="Span90">已送货数量:</span><span id="p_dnad_qty_shipped_HSA18110073_11">0</span>    <span id="Span91">&nbsp;&nbsp;可用库存:</span><span id="p_ld_qty_oh_HSA18110073_11">274963</span></p>
+                    <p><span id="Span92">未送数量:</span><span id="p_dnad_min_HSA18110073_11">500000</span>     <span id="Span93">已备货:</span><span id="p_HSA18110073_11">0</span></p>
+                    <p><span id="Span94">备注:</span><span id="p_rmks_HSA18110073_11">志邦   宇豪我方付    用蛇皮袋装</span></p>
+                    <p><span id="Span95">储位:</span><span id="p_ptp1_char1_HSA18110073_11">H32-28-711</span>  <span id="p_dnad_line_HSA18110073_11" style="display: none;">90</span>
+                        <input type="text" id="txt_movd_qty_HSA18110073_11" class="mui-input-clear " style="height: 25px; width: 95px; font-size: 14px; position: absolute; right: 5%; float: right;" placeholder="[274963]" value="274963">
+                    </p>
+                    <p class="mui-checkbox"><a name="btn_HSA18110073_11" class="btn_impart_click mui-control-item mui-btn mui-btn-primary" href="#item2mobile" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">提交</a><a onclick="btn_cancel_click()" class="mui-btn mui-btn-primary" style="font-size: 14px; margin-left: 1%; line-height: 1; right: 1px; float: right;">取消</a><a onclick="btn_WoXiang(this.name)" name="a_HSA18110073_11" class="mui-btn  mui-icon mui-icon-search btn-ifn " style="margin-bottom: 0px; right: 1px; line-height: 1; float: right;">工单入库</a>
+                        <input name="checkbox1" value="Item 3" type="checkbox" style="position: absolute; top: 50px"/>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

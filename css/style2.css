@@ -1,0 +1,272 @@
+/* CSS Document */
+* {
+	margin:0px;
+	padding:0px;
+}
+#divboss{}
+
+
+#divb {
+	margin-left:-120px;
+	margin: 0px auto;
+	width: 1220px;
+	height: 205px;
+}
+#one {
+	width: 1200px;
+	height: 30px;
+	background: #F0F6F6;
+}
+#one span {
+	font-size: 12px;
+	color: #999;
+	vertical-align: middle;
+	line-height: 30px;
+	position: relative;
+	right: -110px;
+}
+#one span label {
+	color: #F00;
+}
+#one span label a {
+	text-decoration: none;
+	color: #F00;
+}
+#one ul li {
+	font-size: 12px;
+	list-style: none;
+	float: left;
+	width: 70px;
+	position: relative;
+	top: -23px;
+	right: -570px;
+	text-align: center;
+}
+#one ul li a.l1 {
+	text-decoration: none;
+	color: #F00;
+}
+#one ul li a {
+	text-decoration: none;
+	color: #000;
+}
+#one ul li img {
+	vertical-align: middle;
+}
+#one ul li a#d {
+	position: relative;
+	top: -2px;
+}
+#two {
+	width: 981px;
+	height: 71px;
+	margin: 0px auto;
+}
+#two img#i {
+	position: relative;
+	left: -440px;
+}
+#two img#ii {
+	position: relative;
+	top: -44px;
+	right: -250px;
+}
+#two input {
+	height: 28px;
+	width: 270px;
+	border: #CCC 1px solid;
+}
+#two img#iii {
+	vertical-align: middle;
+	position: relative;
+	top: -0.8px;
+}
+#two2 {
+	float: right;
+	position: relative;
+	top: -37px;
+}
+#three {
+	width: 981px;
+	height: 36px;
+	background: #7A9CA8;
+	margin: 0px auto;
+	clear: both;
+	position: relative;
+	top: -25px;
+}
+#three ul li {
+	list-style: none;
+	float: left;
+	font-size: 15px;
+	margin-right: 10px;
+	line-height: 36px;
+	text-indent: 25px;
+	font-weight: bold;
+}
+#three ul #tu {
+	float: right;
+}
+#three ul li a {
+	color: #FFF;
+	text-decoration: none;
+}
+#three ul li a:hover {
+	color: #F00;
+}
+#four {
+	width: 981px;
+	height: 55px;
+	margin: 0px auto;
+	background:#ECECEC;
+	position: relative;
+	top: -20px;
+}
+#four p {
+	color:#999;
+	line-height: 30px;
+	text-indent: 10px;
+	font-size: 12px;
+}
+#four p a {
+	margin-right: 20px;
+	color:#333;
+	text-decoration: none;
+}
+#four p a:hover {
+	color: #F00;
+}
+#four p label {
+	position: relative;
+	right: -65px;
+}/*头部*/
+
+
+
+
+
+
+#diva {/*内容*/
+	margin:0px auto;
+	width:981px;
+	height:1100px;
+	margin-top:10px;
+}
+#radio {
+	width:100%;
+	height:40px;
+	font-size:13px;
+}
+#radio li {
+	list-style:none;
+}
+#shang {
+	width:100%;
+	height:430px;
+}
+#shang p {
+	font-size:14px;
+	letter-spacing:2px;
+	background:url(%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90/img03.png) no-repeat center left;
+	text-indent:30px;
+	line-height:30px;
+}
+#shang p span {
+	font-weight:bolder;
+}
+#shang p label {
+	color:#F00;
+	font-weight:bolder;
+}
+#shang hr {
+	border:0;
+	background-color:#CCC;
+	height:1px;
+}
+#shang ul li {
+	width:318px;
+	height:190px;
+	list-style:none;
+	float:left;
+	margin:4px;
+	margin-top:6px;
+}
+#shang ul li img {
+	border:#CCC 1px solid;
+}
+#xia {
+	width:100%;
+	height:430px;
+	position:relative;
+	top:15px;
+}
+#xia p {
+	font-size:14px;
+	letter-spacing:2px;
+	background:url(%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90/img03.png) no-repeat center left;
+	text-indent:30px;
+	line-height:30px;
+}
+#xia p span {
+	font-weight:bolder;
+}
+#xia p label {
+	color:#F00;
+	font-weight:bolder;
+}
+#xia hr {
+	border:0;
+	background-color:#CCC;
+	height:1px;
+}
+#xia ul li {
+	width:318px;
+	height:190px;
+	list-style:none;
+	float:left;
+	margin:4px;
+	margin-top:6px;
+}
+#xia ul li img {
+	border:#CCC 1px solid;
+}
+#top {
+	width:100%;
+	height:40px;
+}
+#top img {
+	vertical-align:middle;
+}
+#top hr {
+	border:0;
+	background-color:#CCC;
+	height:1px;
+}
+#zz {
+	width:53px;
+	height:20px;
+	position:relative;
+	top:3px;
+	right:250px;
+	float:right
+}
+
+
+
+
+
+
+
+
+#divc{width:981px; height:280px; margin-top:15px; margin:0px auto; position:relative; top:100px;}/*尾部*/
+#divtop{width:981px; height:150px; background:#E8E8EA; margin-bottom:15px;}
+#divtop ul{float:left; width:194px; height:100%; text-align:center; background:url(V+%E5%B0%BE%E9%83%A8%E5%9B%BE%E7%89%87/btm_line.gif) no-repeat right; margin-top:-60px;}
+#divtop ul.l1{background:none;}
+#divtop li{list-style:none; font-size:12px; line-height:25px;}
+#divtop li.l2{color:#C00; margin-top:20px;}
+#divtop ul a{text-decoration:none; color:#333;}
+#divtop ul a:hover{font-weight:bolder;}
+
+#divzhong{width:981px; height:120px; text-align:center; font-size:14px; color:#666;}
+#divzhong a{text-decoration:none; color:#666;}
+#divzhong a:hover{font-weight:bolder; color:#000;}

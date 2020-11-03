@@ -1,0 +1,118 @@
+打开子菜单后再点关闭全部。
+     <script src="jquery.js"></script>
+        <script type="text/javascript" >
+    
+            $(document).ready(function () {
+                var time = 0;
+               
+                    $("a.m0").click(function () {
+                        if (time == 0) {     $("+.submenu", this).fadeIn(300);
+                        $("div a").attr("style", " display: block");
+                        time = 1;
+                    }else {
+                            $(".submenu", this).fadeOut(300);
+                            time = 0;
+                            $(".submenu").attr("style", "display:none");
+                            document.getElementById('div a').style.display = 'none';
+                            $("+.submenu", this).fadeOut(300);
+                            $(".m1", this).fadeOut(300);
+                            $("a", this).fadeOut(300);
+                            $(".submenu", this).fadeOut(300);
+                            $("div a").attr("style", " display: none");
+                            $(".submenu").attr("style", "display:none");
+                            $(".m1").attr("style", "display:none");
+                            document.getElementById('.m1').style.display = 'none';
+                            document.getElementById('+.submenu').style.display = 'none';
+                            $("+.submenu").attr("style", "display:none");
+                            $("a").attr("style", "display:none");
+
+                            time = 0;
+
+                        }
+                    });
+          
+            })
+        </script>
+能打开关闭有时候点两次
+     <script src="jquery.js"></script>
+        <script type="text/javascript" >
+    
+            $(document).ready(function () {
+                var time = 0;
+               
+                    $("a.m0").click(function () {
+                        if (time == 0) {
+                            $("+.submenu", this).fadeIn(300);
+                          
+                        time = 1;
+                    }else {
+                            $("+.submenu", this).fadeOut(300);
+                        
+                           
+                            time = 0;
+
+                        }
+                    });
+          
+            })
+        </script>
+不显示
+ <script src="jquery.js"></script>
+        <script type="text/javascript" >
+    
+            $(document).ready(function () {
+                var time = 0;
+                $("a.m0").click(function () {
+                   
+                    var id = $(this).attr("id");
+                   
+                    var css = id.style.display;
+                    alert(css);
+                        if (time == 0) {
+                            $("+.submenu", this).fadeIn(300);
+                            time = 1;
+                    }else {
+                            $("+.submenu", this).fadeOut(300);
+                            time = 0;
+                        }
+                    });
+            })
+           
+        </script>
+
+display===展开
+    var time = 0;
+                $("a.m0").click(function () {
+                   
+                    var id = $(this).attr("id");
+                  
+                    var css = document.getElementById(id);
+
+                    var fi = css.currentStyle ? css.currentStyle : document.defaultView.getComputedStyle(css, null);
+                    alert(fi.display);
+终极
+
+        <script src="jquery.js"></script>
+        <script type="text/javascript" >
+            $(".m0").attr("style", "");
+            $(document).ready(function () {
+                $(".m0").click(function () {
+                    var id = $(this).attr("id");  //当前的id----attr("id")为id属性
+                    var id0 = document.getElementById(id);//转换
+                    var id1 = $(id0).next().attr("id");
+                    var id2 = document.getElementById(id1);
+
+                             $(".m1").attr("style", "display:none");
+                            document.getElementById('.m1').style.display = 'none';
+
+
+                    var display = id2.currentStyle ? id2.currentStyle : document.defaultView.getComputedStyle(id2, null);//兼容
+                    var display1 = (display.display);
+                    if (display1 == "none") {
+                        $("+.submenu", this).fadeIn(300);
+                    } else {
+                        $("+.submenu", this).fadeOut(300);
+                    }
+                });
+            })
+        </script>

@@ -1,0 +1,233 @@
+/*第一屏动画*/
+
+@keyframes first-screen-font {
+    0%{
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    50%{
+        opacity: 0.5;
+        transform: translateY(50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+.sec1-info,.sec1-vip{
+    animation: first-screen-font 1s linear 1;
+}
+.screen-area{
+    animation: first-screen-font 10s linear 1;
+
+}
+
+@keyframes first-screen-bigfont {
+    0%{
+        transform: translateZ(100px);
+    }
+    100%{
+        transform: translateZ(0px);
+    }
+}
+.sec1-title{
+    animation:first-screen-bigfont 1s linear 1;
+}
+
+@keyframes left-logo {
+    0%{
+        opacity: 0;
+        transform: rotate(180deg);
+        transform:translateX(-90px);
+    }
+    100%{
+        opacity: 1;
+        transform: rotate(0deg);
+        transform:translateX(0px);
+    }
+}
+.icon-feature{
+    animation: left-logo 5s linear 1;
+}
+
+
+
+
+/*第二屏动画*/
+@keyframes second-screen-icon-1 {
+    0%{
+        transform: translate(100px,0px);
+        transform: rotate(-360deg);
+        transform: scale(1);
+    }
+
+    10%{
+        transform: translate(90px,10px);
+        transform: rotate(-330deg);
+        transform: scale(0.5);
+    }
+    20%{
+        transform: translate(80px,25px);
+        transform: rotate(-300deg);
+        transform: scale(1);
+    }
+    30%{
+        transform: translate(70px,40px);
+        transform: rotate(-270deg);
+        transform: scale(1.5);
+    }
+    40%{
+        transform: translate(75px,60px);
+        transform: rotate(-230deg);
+        transform: scale(2);
+    }
+    50%{
+        transform: translate(110px,80px);
+        transform: rotate(-180deg);
+        transform: scale(2.5);
+    }
+    60%{
+        transform: translate(120px,75px);
+        transform: rotate(-120deg);
+        transform: scale(3);
+    }
+    70%{
+        transform: translate(115px,65px);
+        transform: rotate(-60deg);
+        transform: scale(2.5);
+    }
+
+    100%{
+        transform: translate(100px,30px);
+        transform: rotate(0deg);
+        transform: scale(1);
+    }
+}
+/*
+.icon-1{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-2{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-3{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-4{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-5{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-6{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-7{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-8{
+    animation: second-screen-icon-1 2s linear 1;
+}
+.icon-9{
+    animation: second-screen-icon-1 2s linear 1;
+}
+*/
+
+
+
+/*第三屏动画*/
+@keyframes sec3-icon {
+    0%{
+        opacity: 0;
+        transform: translateX(-100px);
+
+    }
+    50%{
+        opacity: 0.5;
+        transform:translateX(-50px);
+    }
+    100%{
+        opacity: 1;
+        transform:translateX(0px);
+    }
+}
+@keyframes sec3-icon1 {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+
+    }
+    100%{
+        opacity: 1;
+        transform:translateX(0px);
+    }
+}
+@keyframes light {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+
+    }
+    100%{
+        opacity: 1;
+        transform:translateX(0px);
+    }
+}
+
+.sec3-icon{
+    animation: sec3-icon 1s ease 5.5s 1;
+}
+.sec3-icon1{
+    animation: sec3-icon1 1s ease-in 5s 1;
+}
+.light{
+    animation: light 1s ease-out 6s 1;
+}
+
+
+
+/*第四屏动画*/
+@keyframes figure2-list {
+    0% {
+        transform: translate(0px,0px);
+
+    }
+    50% {
+        transform: translate(1px,0px);
+
+    }
+    80% {
+        transform: translate(1px,1px);
+
+    }
+    100%{
+        transform:translate(-1px,0px);
+    }
+}
+.figure2-list{
+        animation: figure2-list 1s linear infinite alternate;
+
+}
+
+/*第五屏动画*/
+@keyframes figure3-list {
+    0% {
+        transform: translate(0px,0px) scale(1);
+
+    }
+    50% {
+        transform: translate(1px,0px) scale(1.1);
+
+    }
+    80% {
+        transform: translate(1px,1px) scale(1);
+
+    }
+    100%{
+        transform:translate(-1px,0px) scale(1.1);
+    }
+}
+.figure3-list{
+    animation: figure3-list 0.5s linear 6s 1;
+
+}

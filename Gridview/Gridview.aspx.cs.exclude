@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo; 
+public partial class Gridview_Gridview : System.Web.UI.Page
+{
+ 
+           gridControl1.AllowDrop = true; // 确保能够拖拽
+              gridView1.OptionsSelection.MultiSelect = true;     //确保能够多选
+            gridView1.OptionsSelection.EnableAppearanceFocusedCell = false; //确保选定行的背景色一样。
+            gridView1.OptionsBehavior.Editable = false;  
+            gridView1.OptionsBehavior.ReadOnly = true;
+        //   上述初始化最好放在赋数据源之前。否则数据一开始显示的时候没有选中行。
+
+        //GridHitInfo根据鼠标点击的x、y坐标获取该点的相关信息
+        private GridHitInfo downHitInfo;  
+        private GridHitInfo upHitInfo;
+//触发事件：
+ 
+        //鼠标按下事件
+        private void gridView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            downHitInfo = gridView1.CalcHitInfo(new Point(e.X,e.Y));
+        }
+
+       //鼠标移动事件
+        private void gridView1_MouseMove(object sender, MouseEventArgs e)        {
+            if (e.Button != MouseButtons.Left) return;        //判断是否是左键
+            if (downHitInfo == null||downHitInfo.RowHandle <0) return;   //判断按下的位置是否有值，是否是gridview 的Items.
+
+             int[] rows =gridView1.GetSelectedRows();
+             List<XESHI > row = new List<XESHI >();
+
+             foreach (int r in rows)   // 获取gridview 数据源中对应的信息。
+             {
+                 //根据 gridview 中的行索引获取数据源中对应的是行索引
+                 int dataSourcerows = gridView1.GetDataSourceRowIndex(r);
+
+                 row.Add(asd[dataSourcerows]);
+             }
+             gridControl1.DoDragDrop(row, DragDropEffects.Move);//开始拖放操作。
+        }
+
+        private void gridControl1_DragDrop(object sender, DragEventArgs e)
+        {
+            //获取鼠标在屏幕上的位置。
+            Point gridviewPoint = this.PointToScreen (this.gridControl1.Location  );  
+            //获取 gridview 中对应的的位置（屏幕位置减去 gridView 开始位置）
+            upHitInfo = gridView1.CalcHitInfo(new Point(e.X - gridviewPoint.X, e.Y - gridviewPoint.Y));  
+              if (upHitInfo == null || upHitInfo.RowHandle < 0) return;
+            //获取释放的位置列索引
+            int endRow =gridView1.GetDataSourceRowIndex ( gridView1.GetDataSourceRowIndex(upHitInfo.RowHandle));   
+           
+            List<XESHI> row = e.Data.GetData(typeof(List<XESHI>)) as List<XESHI>;  //获取要移动的数据
+
+            if (row != null && row.Count > 0) //没有移动的数据跳过
+            {
+                int a;
+                //获取移动列集合的第一列在数据源的索引
+                int startRow = asd.IndexOf(row[0]); 
+
+                XESHI xs = asd[endRow];
+
+                if (!row.Contains(xs))  //如果多选的话，确保不能拖拽到这几个里
+                {
+                    gridView1.ClearSelection();
+                    //排序，先删除后后添加，
+                    for (int i = 0; i < row.Count; i++)
+                        asd.Remove(row[i]);
+                    //若果往上托，则加在鼠标到达行的上面
+                    //如果往下拖，则加在鼠标到达行的下面
+                    if (startRow > endRow)
+                        a = asd.IndexOf(xs);
+                    else
+                        a = asd.IndexOf(xs) + 1;
+
+                    for (int i = 0; i < row.Count; i++)
+                    {
+                        asd.Insert(a + i, row[i]);
+                        gridView1.SelectRow(a + i);
+                    }
+                    gridView1.FocusedRowHandle = a;
+                }
+
+            }
+            gridControl1.DataSource = asd;
+            gridView1.RefreshData();
+        }
+ 
+ 
+        private void gridControl1_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+}
