@@ -20,9 +20,7 @@
         <div style ="float :left">
             <asp:GridView ID="GridView1" runat="server"></asp:GridView>
         </div>
-    <div style ="float :left ">
-    <asp:ListBox ID="ListBox1" runat="server" style="width :400px;height :500px;" ></asp:ListBox>
-    </div>
+  
         
     </form>
 </body>

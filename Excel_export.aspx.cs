@@ -20,17 +20,17 @@ public partial class Excel_export : System.Web.UI.Page
     {
         String str_select = " id, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F14, F15, F16, F17, F18, F19, F20 ";
         String str_where = " (F14 is null or F14 like '0')";
-       // if (this.txb_tim1 .Text .Trim() != "")
+       // if (this.txb_tim1.Text.Trim() != "")
         //{
         //'    str_select += "  convert(varchar(12), times,20) <='" & itme_2.Text.Trim() & "'";
         //'}
-        if (this.txb_fno  .Text .Trim() != "")
+        if (this.txb_fno.Text.Trim() != "")
         {
             str_where += "   and F13 like  '+%  txb_fno.Text.Trim()  %+'";
         }
-        if (this.txb_bm .Text.Trim () !="")
+        if (this.txb_bm.Text.Trim () !="")
         {
-            str_where += "  and F2 like  '%"+ txb_bm  .Text .Trim() +"%'";
+            str_where += "  and F2 like  '%"+ txb_bm.Text.Trim() +"%'";
         }
         DataSet ds = new DataSet();
        
@@ -43,7 +43,7 @@ public partial class Excel_export : System.Web.UI.Page
 
         String str_select = " id, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, F13, F14, F15, F16, F17, F18, F19, F20 ";
         String str_where = "   1=1 ";
-        // if (this.txb_tim1 .Text .Trim() != "")
+        // if (this.txb_tim1.Text.Trim() != "")
         //{
         //'    str_select += "  convert(varchar(12), times,20) <='" & itme_2.Text.Trim() & "'";
         //'}

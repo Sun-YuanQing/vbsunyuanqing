@@ -13,6 +13,10 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
 
     DataSet ds = new DataSet();
     String _vbsunyuanqing = "E:/HMTL5_Demo/myGit-wrok/vbsunyuanqing/";
+    protected void OnPreRenderComplete(object sender, EventArgs e)
+    {
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack == true)
@@ -24,11 +28,14 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
             int m1_id = 0;
             int m2_id = 0;
             // 【文件夹】下_A
+            _new_ds_dt_dc_5.ds.Clear();
+            ds.Clear();
             foreach (DirectoryInfo _A in TheFolder.GetDirectories())
             { // this.ListBox1.Items.Add(NextFolder.Name);
                if (_A.Name == ".git" || _A.Name == ".vs") {
                     continue;
                }
+
                if (_A.Name != null)
                {
                    m0_id++;
@@ -140,8 +147,8 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
     protected void Button2_Click(object sender, EventArgs e)
     {
        DataSet ds = new DataSet();
-       ds.Merge(_new_ds_dt_dc_5 .ds.Tables ["t_gridview_menuL0"] );
-      //  ds.Merge(_new_ds_dt_dc_5.ds.Tables["t_gridview_menuL1"]);
+       //ds.Merge(_new_ds_dt_dc_5 .ds.Tables ["t_gridview_menuL0"] );
+       ds.Merge(_new_ds_dt_dc_5.ds.Tables["t_gridview_menuL1"]);
         GridView1.DataSource = ds;
     
         GridView1.DataBind();
@@ -173,7 +180,16 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
         }
         _new_ds_dt_dc_5.ds.Clear();
     }
-
+    protected void selecteTree(object sender, EventArgs e)
+    {
+        try
+        {
+            Response.Write("selecteTree");
+        }
+        catch (Exception)
+        {
+        }
+    }
 }
 
 
