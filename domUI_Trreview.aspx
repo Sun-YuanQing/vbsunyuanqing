@@ -6,6 +6,28 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+<script type="text/javascript" src="crossDomain.js"></script>
+  <script  type="text/javascript">
+      (function () {
+          // 内部跨域iframe的代理页面
+          var toProxyUrl = "http://localhost:1088/domUI_Trreview.aspx"; // 本地域（外层iframe)的代理地址
+          var localProxyUrl = "http://localhost:9527/#/DomUI/DomUImian";
+          // 本地页面注册用toSub，跨域页面注册用toMain
+          var crossType = "toMain";
+          //创建跨域对象
+          var c = new crossDimain(toProxyUrl, localProxyUrl, crossType);
+          // 注册跨域回调方法
+          RFMGR.on("a2b", function (data) {
+              alert("从B页面传过来的数据：" + data);
+          });
+      })();
+
+
+      function sendMessage(data) {
+          //跨域发送消息
+          RFMGR.send("b2a", data);
+      }
+  </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -21,7 +43,7 @@
             <asp:GridView ID="GridView1" runat="server"></asp:GridView>
         </div>
   
-        
+          
     </form>
 </body>
 </html>

@@ -147,8 +147,8 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
     protected void Button2_Click(object sender, EventArgs e)
     {
        DataSet ds = new DataSet();
-       //ds.Merge(_new_ds_dt_dc_5 .ds.Tables ["t_gridview_menuL0"] );
-       ds.Merge(_new_ds_dt_dc_5.ds.Tables["t_gridview_menuL1"]);
+       ds.Merge(_new_ds_dt_dc_5 .ds.Tables ["t_gridview_menuL0"] );
+       //ds.Merge(_new_ds_dt_dc_5.ds.Tables["t_gridview_menuL1"]);
         GridView1.DataSource = ds;
     
         GridView1.DataBind();
@@ -180,16 +180,7 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
         }
         _new_ds_dt_dc_5.ds.Clear();
     }
-    protected void selecteTree(object sender, EventArgs e)
-    {
-        try
-        {
-            Response.Write("selecteTree");
-        }
-        catch (Exception)
-        {
-        }
-    }
+   
 }
 
 
