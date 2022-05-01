@@ -22,10 +22,10 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
             //开始遍历文件E:vbsunyuanqing/
             int m0_id = 0;
             int m1_id = 0;
-           int m2_id = 0;
-            //开始遍历文件夹E:vbsunyuanqing/--------------------------------------------------------------------------
-           foreach (DirectoryInfo _A in TheFolder.GetDirectories())
-           { // this.ListBox1.Items.Add(NextFolder.Name);
+            int m2_id = 0;
+            // 【文件夹】下_A
+            foreach (DirectoryInfo _A in TheFolder.GetDirectories())
+            { // this.ListBox1.Items.Add(NextFolder.Name);
                if (_A.Name == ".git" || _A.Name == ".vs") {
                     continue;
                }
@@ -38,9 +38,9 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
                _a.Text = (_A.Name);
                _a.Value = (_A.Name);
                this.TreeView1.Nodes.Add(_a);         //将文件夹节点添加到TreeView1
-              
-               // C#第二次遍历E:vbsunyuanqing/  下【a文件夹】的【文件】
-               DirectoryInfo _A_B = new DirectoryInfo(_vbsunyuanqing + _A.Name);     //开始遍历E:vbsunyuanqing/  下【a文件夹】的【b文件夹】
+
+                // 【文件夹】下_A_B  
+                DirectoryInfo _A_B = new DirectoryInfo(_vbsunyuanqing + _A.Name);     //开始遍历E:vbsunyuanqing/  下【a文件夹】的【b文件夹】
                foreach (DirectoryInfo _B in _A_B.GetDirectories())
                {
                    if (_B.Name != null)
@@ -55,9 +55,10 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
                    TreeNode _AB = new TreeNode();
                    _AB = this.TreeView1.FindNode(_a.Value);     //获取E:vbsunyuanqing/  下【a文件夹】的节点
                    _AB.ChildNodes.Add(_b);          //将E:vbsunyuanqing/  下【a文件夹】的【b文件夹】节点添加到E:vbsunyuanqing/  下【a文件夹】的节点中
-               
-                   //----------------------san------------
-                   DirectoryInfo _A_B_C = new DirectoryInfo(_vbsunyuanqing + _A.Name + "/" + _B.Name);
+
+                   
+                    // 【文件夹】下_A_B_C
+                    DirectoryInfo _A_B_C = new DirectoryInfo(_vbsunyuanqing + _A.Name + "/" + _B.Name);
                    foreach (DirectoryInfo _C in _A_B_C.GetDirectories())
                    {
                        if (_C.Name != null)
@@ -76,8 +77,8 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
                
                    }
 
-                    //遍历E:vbsunyuanqing/  下【a文件夹】的【文件】
-                    foreach (FileInfo _CX in _A_B_C.GetFiles("*.aspx"))  
+                    // 【文件夹】下_A_B_C 不过滤GetFiles("*.aspx"))
+                    foreach (FileInfo _CX in _A_B_C.GetFiles())  
                    {
                        if (_CX.Name != null)
                        {
@@ -85,8 +86,8 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
                            String m2_URL = _A.Name + "/" + _B.Name + "/" + _CX.Name;
                            _new_ds_dt_dc_5.ds.Merge(_new_ds_dt_dc_5.t_gridview_menuL2(m2_id, m0_id, m1_id, _CX.Name, m2_URL, 0, 0));
                        }
-                       //创建E:vbsunyuanqing/  下【文件夹】的【文件】节点
-                       TreeNode _cx = new TreeNode();
+                        //创建E:vbsunyuanqing/  下_A_B_C的【文件】节点
+                        TreeNode _cx = new TreeNode();
                        _cx.Text = (_CX.Name);
                        _cx.Value = (_CX.Name);
 
@@ -95,12 +96,11 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
                        _abcx.ChildNodes.Add(_cx);
 
                    }
-                   //-------------------------------san------------
-
+                
                   
                }
-                //遍历E:vbsunyuanqing/  下【a文件夹】的【文件】
-                foreach (FileInfo _bX in _A_B.GetFiles("*.aspx"))  
+                // 【文件夹】下_A_B 不过滤GetFiles("*.aspx"))
+                foreach (FileInfo _bX in _A_B.GetFiles())  
                {
                    if (_bX.Name != null)
                    {
@@ -117,8 +117,9 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
                    _pnode1 = this.TreeView1.FindNode(_a.Value);  //获取E:vbsunyuanqing/  下【a文件夹】的节点
                    _pnode1.ChildNodes.Add(_bx);                 //将E:vbsunyuanqing/  下【a文件夹】的【文件】节点添加到E:vbsunyuanqing/  下【文件夹】的节点中
                }//_bX
-           }//A
-               foreach (FileInfo _X in TheFolder.GetFiles("*.aspx"))
+            }
+             // 【文件夹】下_A  不过滤GetFiles("*.aspx"))
+            foreach (FileInfo _X in TheFolder.GetFiles("*.aspx"))
                {
                    if (_X.Name != null)
                    {
@@ -132,73 +133,10 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
 
                
                }//_AX
-            //-----------------------------------------------------------------------------------------------------------
         }
     }
 
 
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-
-        //C#开始遍历指定的文件夹
-        ListBox1.Items.Clear();
-        //  C#遍历指定文件夹中的所有文件 
-        DirectoryInfo TheFolder = new DirectoryInfo(_vbsunyuanqing);
-        //遍历文件夹
-        //foreach (DirectoryInfo NextFolder in TheFolder.GetDirectories())
-        //{
-        //    this.ListBox1  .Items.Add(NextFolder.Name);
-        //}
-        //遍历文件
-        //foreach(FileInfo NextFile in TheFolder.GetFiles())
-        // this.ListBox1 .Items.Add(NextFile.Name);
-        FindFile(_vbsunyuanqing);
-        //-----------遍历文件夹-------------------------------------------
-        //DirectoryInfo dir = new DirectoryInfo(@"c:\");
-        //foreach (DirectoryInfo dChild in dir.GetDirectories("*"))
-        //{//如果用GetDirectories("ab*"),那么全部以ab开头的目录会被显示
-        //    Response.Write(dChild.Name + "<BR>");//打印目录名
-        //    Response.Write(dChild.FullName + "<BR>");//打印路径和目录名
-        //}
-        //-----------------------------------------------------------     
-        //  //  2、遍历一个目录下的全部文件，要用到System.IO.DirectoryInfo 类的GetFiles方法：
-        //DirectoryInfo dir = new DirectoryInfo(@"c:\");
-        //   foreach  (DirectoryInfo dChild in dir.GetFiles("*")) 
-        //{//如果用GetFiles("*.txt"),那么全部txt文件会被显示
-        //    Response.Write(dChild.Name + "<BR>");//打印文件名
-        //    Response.Write(dChild.FullName + "<BR>");//打印路径和文件名
-        //}
-
-    }
-
-    //采用递归的方式遍历，文件夹和子文件中的所有文件。
-    public void FindFile(string dirPath) //参数dirPath为指定的目录
-    {
-        //在指定目录及子目录下查找文件,在ListBox1中列出子目录及文件
-        DirectoryInfo Dir = new DirectoryInfo(dirPath);
-        try
-        {
-            foreach (DirectoryInfo d in Dir.GetDirectories())//查找子目录
-            {
-               // FindFile(d.ToString() + "&nbsp;" + "00000");
-                ListBox1.Items.Add(d.ToString() );
-                // ListBox1.Items.Add(d.ToString() + "-"); //ListBox1中填加目录名
-            }
-
-            //用下面代码限制文件的类型：
-            //foreach(FileInfo f in Dir.GetFiles("*.---")) //查找文件
-            //“*.---”指要访问的文件的类型的扩展名
-
-            foreach (FileInfo f in Dir.GetFiles("*.aspx")) //查找文件
-            {
-                ListBox1.Items.Add(f.ToString()); //ListBox1中填加文件名
-            }
-        }
-        catch (Exception )
-        {
-             
-        }
-    }
     protected void Button2_Click(object sender, EventArgs e)
     {
        DataSet ds = new DataSet();
@@ -208,7 +146,6 @@ public partial class C_ListBox_Trreview : System.Web.UI.Page
     
         GridView1.DataBind();
     }
-
 
     protected void Button3_Click(object sender, EventArgs e)
     {

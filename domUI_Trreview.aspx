@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ListBox_Trreview.aspx.cs" Inherits="C_ListBox_Trreview" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="domUI_Trreview.aspx.cs" Inherits="C_ListBox_Trreview" %>
 
 <!DOCTYPE html>
 
@@ -14,7 +14,6 @@
             <asp:TreeView ID="TreeView1" runat="server"></asp:TreeView>
         </div>
         <div style ="float :left ">
-            <asp:Button ID="Button1" runat="server" Text="查询aspx" OnClick="Button1_Click" /><br />
             <asp:Button ID="Button2"  runat="server" Text="以列表查看"   OnClick="Button2_Click  "/><br />
             <asp:Button ID="Button3"  runat="server" Text="上传数据"   OnClick="Button3_Click  "/>
         </div>

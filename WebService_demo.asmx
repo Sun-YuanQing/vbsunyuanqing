@@ -32,59 +32,28 @@ using System.Net;
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 [System.ComponentModel.ToolboxItem(false)]
 //++++++++++++++++++++++++++++
-//InsertTable是用的正式数据库要改demo  WebService_demo
+   //InsertTable是用的正式数据库要改demo
 //+++++++++++++++++++++++++++++
 // 若要允许使用 ASP.NET AJAX 从脚本中调用此 Web 服务，请取消注释以下行。 
 [System.Web.Script.Services.ScriptService]
 public class WebService : System.Web.Services.WebService
 {
-    public static string connstr_GC_SZ = "connstrAPP_demo";
+    string connstr_GC_SZ = "connstrAPP_demo";
     public WebService()
     {
         //如果使用设计的组件，请取消注释以下行 
         //InitializeComponent(); 
     }
-    public static string str = ConfigurationManager.ConnectionStrings[connstr_GC_SZ].ConnectionString;
-    //声明数据库连接
-    public static SqlConnection Conn = new SqlConnection(str);//连接数据库
-    /// <summary>
-    /// 打开数据库
-    /// </summary>
-    public static void OpenConnection()
-    {
-        if (Conn.State == ConnectionState.Closed)
-        {
-            Conn.Open();
-        }
-        if (Conn.State == ConnectionState.Broken)
-        {
-            Conn.Close();
-            Conn.Open();
-        }
-
-    }
-    /// <summary>
-    /// 关闭数据库
-    /// </summary>
-    public static void CloseConnection()
-    {
-        if (Conn.State == ConnectionState.Open)
-        {
-            Conn.Close();
-        }
-        if (Conn.State == ConnectionState.Broken)
-        {
-            Conn.Close();
-        }
-
-    }
-    //参数设置
+    //参数设置 <-----参数需要重新设置----->
     //http的域名
     private static String HOST = "http://sdk.open.api.igexin.com/apiex.htm";
+
+
+
     //定义常量, appId、appKey、masterSecret 采用本文档 "第二步 获取访问凭证 "中获得的应用配置
-    private static String APPID = "LqVXmo6ee69LxLaOHPxD3A";
-    private static String APPKEY = "nbLlTQ2yywAM0cBDk6bF58";
-    private static String MASTERSECRET = "FAkdfyR0I78oAHxet4k85A";
+    private static String APPID = "Tmnd3qnPXJ6c8hVyce6u4";
+    private static String APPKEY = "kNLHV52krj5fmyRTcpaMX9";
+    private static String MASTERSECRET = "lZeGPIE7mV6tRfgwha0HV9";
     //private static String CLIENTID = "80023f3021539037165092abca1256b2";
     //ef56781af4f5f86b83e3d2c03699f9df
     //private static String CLIENTID1 = "e605a0db5ce3cca9b76b012978064940";
@@ -94,14 +63,16 @@ public class WebService : System.Web.Services.WebService
     //private static String TASKID = "OSA-0903_bWHwhpFPEC7i5nZwHmc6d";
     //private static String ALIAS = "请输入别名";
     //private static string PN = "13550347892";
-    [WebMethod(Description = "指定设备（用户）推送消息.")]
+    [WebMethod]
     public void PushMessageToSingle(String CLIENTID, string begin, string end, string str_message)
     {
+
         IGtPush push = new IGtPush(HOST, APPKEY, MASTERSECRET);
 
         //消息模版：TransmissionTemplate:透传模板
 
         TransmissionTemplate template = TransmissionTemplateDemo(begin, end, str_message);
+
 
         // 单推消息模型
         SingleMessage message = new SingleMessage();
@@ -150,54 +121,6 @@ public class WebService : System.Web.Services.WebService
 
         return template;
     }
-  
-    [WebMethod(Description = "查找有权限的用户(人).")]
-    public void sp_up_user(string up_menu_id, string column)
-    {
-        StringBuilder Json = new StringBuilder();
-        HSql hs = new HSql(connstr_GC_SZ);
-        DataSet tmpDS = null;
-        SqlParameter[] paramsArr =   
-        {
-           hs.MakeInParam("@up_menu_id" , SqlDbType.NVarChar, 50,up_menu_id),
-           hs.MakeInParam("@column" , SqlDbType.NVarChar, 50,column),
-        };
-
-        hs.RunProc("sp_up_user", paramsArr, ref tmpDS);
-        hs.Close();
-
-        DataTable dt = new DataTable();
-        Json.Append("[");
-        if (tmpDS != null && tmpDS.Tables.Count > 0)
-        {
-            dt = tmpDS.Tables[0];
-            if (dt.Rows.Count > 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    Json.Append("{");
-                    for (int j = 0; j < dt.Columns.Count; j++)
-                    {
-                        Json.Append("\"" + dt.Columns[j].ColumnName.ToString() + "\":\"" + dt.Rows[i][j].ToString().Replace("\"", "“") + "\"");
-                        if (j < dt.Columns.Count - 1)
-                        {
-                            Json.Append(",");
-                        }
-                    }
-                    Json.Append("}");
-                    if (i < dt.Rows.Count - 1)
-                    {
-                        Json.Append(",");
-                    }
-                }
-            }
-        }
-        Json.Append("]");
-        Context.Response.Charset = "utf-8";
-        Context.Response.ContentEncoding = System.Text.Encoding.UTF8;
-        Context.Response.Write(Json);
-        Context.Response.End();
-    }
     /// <summary>
     /// 未完生产单
     /// </summary>
@@ -207,7 +130,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="wo_due_date1"></param>
     /// <param name="wo_due_date2"></param>
     /// <param name="proc"></param>
-    [WebMethod(Description = "未完生产单.")]
+    [WebMethod]
     public void sp_wo_mstr_untreated(string wo_nbr, string wo_line, string wo_part, string wo_due_date1, string wo_due_date2, string proc)
     {
         StringBuilder Json = new StringBuilder();
@@ -263,7 +186,7 @@ public class WebService : System.Web.Services.WebService
     /// 查询sp_select  SQL
     /// </summary>
     /// <param name="sql"></param>
-   [WebMethod(Description = "查询hs.DSet(sql)  SQL.")]
+    [WebMethod]
     public void sp_select(string sql)
     {
         StringBuilder Json = new StringBuilder();
@@ -320,7 +243,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="mov_cat"></param>
     /// <param name="mov_type"></param>
     /// <param name="mov_doc_code"></param>
-      [WebMethod(Description = "指定单别查询  出入库单据详情   sp_mov_mov_date  的进化版.")]
+    [WebMethod]
     public void sp_mov_doc_code_data(string mov_mov, string mov_cat, string mov_type, string mov_doc_code)
     {
         StringBuilder Json = new StringBuilder();
@@ -393,7 +316,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="part"></param>
     /// <param name="mov_doc_code">单别（固定值30 计划外入仓单31计划外出仓单32转仓单）</param>
     /// <param name="pst">过账</param>
-    [WebMethod(Description = "指定单别查询  出入库单据头表 sp_mov_mov_query 的进化版.")]
+    [WebMethod]
     public void sp_mov_mov_type_query(string mov_mov, string date1, string date2, string mov_cat,string mov_type,string mov_crt_by,string part,string mov_doc_code, int pst)
     {
         StringBuilder Json = new StringBuilder();
@@ -448,20 +371,24 @@ public class WebService : System.Web.Services.WebService
         Context.Response.End();
     }
     /// <summary>
-    /// 执行添加 sql语句
+    /// 执行添加
     /// </summary>
     /// <param name="sql">strsql</param>
-    [WebMethod(Description = "执行添加 sql语句.")]
+    [WebMethod]
      public void InsertTable(string sql)
      {
-        
-         OpenConnection();
-         SqlTransaction trans = Conn.BeginTransaction();//事物对象
+        //连接字符串
+         string str = ConfigurationManager.ConnectionStrings[connstr_GC_SZ].ConnectionString;  
+         //声明数据库连接
+         SqlConnection conn = new SqlConnection(str);
+         SqlConnection con = new SqlConnection(str);//连接数据库
+         con.Open();
+         SqlTransaction trans = con.BeginTransaction();//事物对象
          string insertok = "失败";
          try 
 	     {
             SqlCommand com = new SqlCommand();//数据操作对象
-            com.Connection = Conn;//指定连接
+            com.Connection = con;//指定连接
             com.Transaction = trans;//指定事物
             com.CommandText = sql;
             com.ExecuteNonQuery();//执行该行
@@ -473,7 +400,6 @@ public class WebService : System.Web.Services.WebService
               insertok = e.ToString();
              trans.Rollback();
 	      }
-         CloseConnection();
          Context.Response.Charset = "utf-8";
          Context.Response.ContentEncoding = System.Text.Encoding.UTF8;
          Context.Response.Write(insertok);
@@ -483,7 +409,7 @@ public class WebService : System.Web.Services.WebService
     ///获取拆解的明细数量
     /// </summary>
     /// <param name="part"></param>
-   [WebMethod(Description = "获取拆解的明细数量.")]
+    [WebMethod]
     public void sp_split_det_new(int numder, string ps_par,string ps_comp)
     {
         StringBuilder Json = new StringBuilder();
@@ -530,51 +456,12 @@ public class WebService : System.Web.Services.WebService
         Context.Response.Write(Json);
         Context.Response.End();
     }
-
-   [WebMethod(Description = "拆解物料级别  物料之间的所有关系.")]
-   public void sp_treeview_1(string part)
-   {
-       StringBuilder Json = new StringBuilder();
-       HSql hs = new HSql(connstr_GC_SZ);
-       DataSet tmpDS = null;
-       SqlParameter[] paramsArr =   
-        {
-           hs.MakeInParam("@part" , SqlDbType.NVarChar, 50,part),
-        };
-       hs.RunProc("sp_treeview_1", paramsArr, ref tmpDS);
-       hs.Close();
-       DataTable dt = new DataTable();
-       Json.Append("[");
-       if (tmpDS != null && tmpDS.Tables.Count > 0)
-       {
-           dt = tmpDS.Tables[0];
-           if (dt.Rows.Count > 0)
-           {
-               for (int i = 0; i < dt.Rows.Count; i++)
-               {
-                   Json.Append("{");
-                   for (int j = 0; j < dt.Columns.Count; j++)
-                   {
-                       Json.Append("\"" + dt.Columns[j].ColumnName.ToString() + "\":\"" + dt.Rows[i][j].ToString().Replace("\"", "“") + "\"");
-                       if (j < dt.Columns.Count - 1)
-                       {
-                           Json.Append(",");
-                       }
-                   }
-                   Json.Append("}");
-                   if (i < dt.Rows.Count - 1)
-                   {
-                       Json.Append(",");
-                   }
-               }
-           }
-       } Json.Append("]");
-       Context.Response.Charset = "utf-8";
-       Context.Response.ContentEncoding = System.Text.Encoding.UTF8;
-       Context.Response.Write(Json);
-       Context.Response.End();
-   }
-    [WebMethod(Description = "拆解物料级别  物料之间的关系[用量单位是正数的].")]
+    
+    /// <summary>
+    /// --拆解物料级别  物料之间的关系
+    /// </summary>
+    /// <param name="part"></param>
+    [WebMethod]
     public void sp_treeview(string part)
     {
         StringBuilder Json = new StringBuilder();
@@ -618,111 +505,11 @@ public class WebService : System.Web.Services.WebService
         Context.Response.End();
     }
     /// <summary>
-    /// 可 组装 子件物料 库存查询，库位(可用)不包含IQC,OVR,RTV,WIP,CH
+    /// 查询可拆解的物料，库位不包含IQC,OVR,RTV,WIP,CH
     /// </summary>
     /// <param name="part">物料</param>
     /// <param name="loc">库位</param>
-    [WebMethod(Description = "可 组装 子件物料 库存查询，库位(可用)不包含IQC,OVR,RTV,WIP,CH.")]
-    public void sp_loc_psrt_query_2(string part, string loc)
-    {
-        StringBuilder Json = new StringBuilder();
-        HSql hs = new HSql(connstr_GC_SZ);
-        DataSet tmpDS = null;
-        SqlParameter[] paramsArr =   
-        {
-           hs.MakeInParam("@part" , SqlDbType.NVarChar, 50,part),
-           hs.MakeInParam("@loc" , SqlDbType.NVarChar, 50,loc),
-        };
-        hs.RunProc("sp_loc_psrt_query_2", paramsArr, ref tmpDS);
-        hs.Close();
-        DataTable dt = new DataTable();
-        Json.Append("[");
-        if (tmpDS != null && tmpDS.Tables.Count > 0)
-        {
-            dt = tmpDS.Tables[0];
-            if (dt.Rows.Count > 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    Json.Append("{");
-                    for (int j = 0; j < dt.Columns.Count; j++)
-                    {
-                        Json.Append("\"" + dt.Columns[j].ColumnName.ToString() + "\":\"" + dt.Rows[i][j].ToString().Replace("\"", "“") + "\"");
-                        if (j < dt.Columns.Count - 1)
-                        {
-                            Json.Append(",");
-                        }
-                    }
-                    Json.Append("}");
-                    if (i < dt.Rows.Count - 1)
-                    {
-                        Json.Append(",");
-                    }
-                }
-            }
-        }
-        Json.Append("]");
-        Context.Response.Charset = "utf-8";
-        Context.Response.ContentEncoding = System.Text.Encoding.UTF8;
-        Context.Response.Write(Json);
-        Context.Response.End();
-    }
-    /// <summary>
-    /// 关联bom_mstr树结构可 组装 物料查询，库位(可用)不包含IQC,OVR,RTV,WIP,CH
-    /// </summary>
-    /// <param name="part">物料</param>
-    /// <param name="loc">库位</param>
-    [WebMethod(Description = "关联bom_mstr树结构可 组装 物料查询，库位(可用)不包含IQC,OVR,RTV,WIP,CH.")]
-    public void sp_loc_psrt_query_1(string part, string loc)
-    {
-        StringBuilder Json = new StringBuilder();
-        HSql hs = new HSql(connstr_GC_SZ);
-        DataSet tmpDS = null;
-        SqlParameter[] paramsArr =   
-        {
-           hs.MakeInParam("@part" , SqlDbType.NVarChar, 50,part),
-           hs.MakeInParam("@loc" , SqlDbType.NVarChar, 50,loc),
-        };
-        hs.RunProc("sp_loc_psrt_query_1", paramsArr, ref tmpDS);
-        hs.Close();
-        DataTable dt = new DataTable();
-        Json.Append("[");
-        if (tmpDS != null && tmpDS.Tables.Count > 0)
-        {
-            dt = tmpDS.Tables[0];
-            if (dt.Rows.Count > 0)
-            {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    Json.Append("{");
-                    for (int j = 0; j < dt.Columns.Count; j++)
-                    {
-                        Json.Append("\"" + dt.Columns[j].ColumnName.ToString() + "\":\"" + dt.Rows[i][j].ToString().Replace("\"", "“") + "\"");
-                        if (j < dt.Columns.Count - 1)
-                        {
-                            Json.Append(",");
-                        }
-                    }
-                    Json.Append("}");
-                    if (i < dt.Rows.Count - 1)
-                    {
-                        Json.Append(",");
-                    }
-                }
-            }
-        }
-        Json.Append("]");
-        Context.Response.Charset = "utf-8";
-        Context.Response.ContentEncoding = System.Text.Encoding.UTF8;
-        Context.Response.Write(Json);
-        Context.Response.End();
-    }
-    /// <summary>
-    /// 查询可拆解的物料，库位不包含IQC,OVR,RTV,WIP,CH,''
-    /// </summary>
-    /// <param name="part">物料</param>
-    /// <param name="loc">库位</param>
-     [WebMethod(Description = "查询可拆解的物料，库位不包含IQC,OVR,RTV,WIP,CH,''.")]
+    [WebMethod]
     public void sp_loc_psrt_query(string part, string loc)
     {
         StringBuilder Json = new StringBuilder();
@@ -772,10 +559,9 @@ public class WebService : System.Web.Services.WebService
    /// </summary>
    /// <param name="user_id"></param>
    /// <param name="app_version"></param>
-   [WebMethod(Description = "登录修改登录版本和登录时间.")]
+    [WebMethod]
     public void sp_client_login_update(string user_id, string app_version, string app_clientid, string app_appid, string app_appkey,
-        string system_os_name,string system_os_version,string system_device_model,string system_device_vendor,
-       string system_device_uuid, string system_device_imsi)
+        string system_os_name,string system_os_version,string system_device_model,string system_device_vendor)
     {
         StringBuilder Json = new StringBuilder();
         HSql hs = new HSql(connstr_GC_SZ);
@@ -791,8 +577,6 @@ public class WebService : System.Web.Services.WebService
            hs.MakeInParam("@system_os_version" , SqlDbType.NVarChar, 50,system_os_version),
            hs.MakeInParam("@system_device_model" , SqlDbType.NVarChar, 50,system_device_model),
            hs.MakeInParam("@system_device_vendor" , SqlDbType.NVarChar, 50,system_device_vendor),
-           hs.MakeInParam("@system_device_uuid" , SqlDbType.NVarChar, 50,system_device_uuid),
-           hs.MakeInParam("@system_device_imsi" , SqlDbType.NVarChar, 50,system_device_imsi),
         };
         hs.RunProc("sp_client_login_update", paramsArr, ref tmpDS);
         hs.Close();
@@ -832,11 +616,10 @@ public class WebService : System.Web.Services.WebService
     /// 插入登录用户API
     /// </summary>
     /// <param name="user_id"></param>
-     [WebMethod(Description = "插入登录用户API.")]
+    [WebMethod]
     public void sp_inesrt_login_client(string user_id,string user_name,string app_id,string app_token,
         string app_clientid,string app_appid,string app_appkey,string app_version,
-        string system_os_name,string system_os_version,string system_device_model,string system_device_vendor,
-        string system_device_uuid, string system_device_imsi)
+        string system_os_name,string system_os_version,string system_device_model,string system_device_vendor)
     {
         StringBuilder Json = new StringBuilder();
         HSql hs = new HSql(connstr_GC_SZ);
@@ -855,8 +638,6 @@ public class WebService : System.Web.Services.WebService
            hs.MakeInParam("@system_os_version" , SqlDbType.NVarChar, 50,system_os_version),
            hs.MakeInParam("@system_device_model" , SqlDbType.NVarChar, 50,system_device_model),
            hs.MakeInParam("@system_device_vendor" , SqlDbType.NVarChar, 50,system_device_vendor),
-           hs.MakeInParam("@system_device_uuid" , SqlDbType.NVarChar, 50,system_device_uuid),
-           hs.MakeInParam("@system_device_imsi" , SqlDbType.NVarChar, 50,system_device_imsi),
         };
         hs.RunProc("sp_inesrt_login_client", paramsArr, ref tmpDS);
         hs.Close();
@@ -898,7 +679,7 @@ public class WebService : System.Web.Services.WebService
     /// 查询用户登录API参数
     /// </summary>
     /// <param name="user_id"></param>
-     [WebMethod(Description = "查询用户登录API参数.")]
+    [WebMethod]
     public void sp_login_client_query(string user_id,string app_clientid)
     {
         StringBuilder Json = new StringBuilder();
@@ -957,7 +738,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="pod_due_date1"></param>
     /// <param name="pod_due_date2"></param>
     /// <param name="po_type"> </param>
-    [WebMethod(Description = "未完采购.")]
+    [WebMethod]
     public void sp_po_mstr_untreated(string po_vend, string po_nbr, string pod_pr, string part, string po_ord_date1, string po_ord_date2, string pod_due_date1, string pod_due_date2, string po_type)
     {
         StringBuilder Json = new StringBuilder();
@@ -1024,7 +805,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="sod_due_date2"></param>
     /// <param name="part"></param>
     /// <param name="proc">执行的存储过程</param>
-   [WebMethod(Description = "未完订单.")]
+    [WebMethod]
     public void sp_so_mstr_query(string cust, string so_nbr, string so_ord_date1, string so_ord_date2, string sod_due_date1, string sod_due_date2, string part,string  proc)
     {
         StringBuilder Json = new StringBuilder();
@@ -1132,7 +913,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="cust">送货客户</param>
     /// <param name="dn_dn">送货单号</param>
     /// <param name="part">送货明细物料</param>
-    [WebMethod(Description = "送货单数据集.")]
+    [WebMethod]
     public void sp_dn_dn_data(string time1, string time2, string cust, string dn_dn, string part)
     {
         StringBuilder Json = new StringBuilder();
@@ -1157,7 +938,7 @@ public class WebService : System.Web.Services.WebService
             for (int a = 0; a < tmpDS.Tables.Count; a++)
             {
                 dt = tmpDS.Tables[a];
-                Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
+                Json.Append(tmpDS.Tables[a].TableName.ToString() + ":[");
                 if (dt.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -1195,7 +976,7 @@ public class WebService : System.Web.Services.WebService
    /// 送货单明细
    /// </summary>
    /// <param name="dnd_dn"></param>
-   [WebMethod(Description = "送货单明细.")]
+   [WebMethod]
     public void sp_dnd_det_query( string dnd_dn)
     {
         StringBuilder Json = new StringBuilder();
@@ -1243,14 +1024,14 @@ public class WebService : System.Web.Services.WebService
         Context.Response.End();
     }
   /// <summary>
-   /// 送货单头表
+  /// 
   /// </summary>
   /// <param name="time1">送货日期</param>
   /// <param name="time2">送货日期</param>
   /// <param name="cust">送货客户</param>
   /// <param name="dn_dn">送货单号</param>
   /// <param name="part">送货明细物料</param>
-   [WebMethod(Description = "送货单头表.")]
+    [WebMethod]
     public void sp_dn_mstr_query(string time1, string time2, string cust, string dn_dn, string part,int pst)
     {
         StringBuilder Json = new StringBuilder();
@@ -1305,8 +1086,8 @@ public class WebService : System.Web.Services.WebService
     /// 物料代码描述混合查询代码
     /// </summary>
     /// <param name="part"></param>
-
-    [WebMethod(Description = "物料代码描述混合查询代码.")]
+  
+    [WebMethod]
     public void sp_loc_part(string part)
     {
         StringBuilder Json = new StringBuilder();
@@ -1420,7 +1201,7 @@ public class WebService : System.Web.Services.WebService
             for (int a = 0; a < tmpDS.Tables.Count; a++)
             {
                 dt = tmpDS.Tables[a];
-                Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
+                Json.Append(tmpDS.Tables[a].TableName.ToString() + ":[");
                 if (dt.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -1458,7 +1239,7 @@ public class WebService : System.Web.Services.WebService
     /// 查询物料库存信息
     /// </summary>
     /// <param name="ld_part">物料</param>
-    [WebMethod(Description = "查询物料库存信息.")]
+    [WebMethod]
     public void sp_scan_query(string ld_part)
     {
         StringBuilder Json = new StringBuilder();
@@ -1507,17 +1288,19 @@ public class WebService : System.Web.Services.WebService
         Context.Response.End();
     }
     [WebMethod]
-    public void sp_up(string usr_user,string up_menu_id)
+    public void sp_up(string usr_user)
     {
         StringBuilder Json = new StringBuilder();
+
         HSql hs = new HSql(connstr_GC_SZ);
 
         DataSet tmpDS = null;
         SqlParameter[] paramsArr =   
             { 
                 hs.MakeInParam("@usr_user" , SqlDbType.VarChar, 30 ,usr_user), // (DateTime.Now)日期格式可以直接用字串，SQL Server可以自动把字符串认成日期型
-                hs.MakeInParam("@up_menu_id" , SqlDbType.VarChar, 30 ,up_menu_id),
+              
             };
+
         hs.RunProc("sp_up", paramsArr, ref tmpDS);
         hs.Close();
         DataTable dt = new DataTable();
@@ -1612,7 +1395,7 @@ public class WebService : System.Web.Services.WebService
     /// </summary>
     /// <param name="iqcd_iqc">单号</param>
     /// <param name="iqcd_line">行号</param>
-     [WebMethod(Description = "删除IQC检验入库单.")]
+    [WebMethod]
     public void sp_iqcd_delete(string iqcd_iqc, int iqcd_line)
     {
 
@@ -1641,7 +1424,7 @@ public class WebService : System.Web.Services.WebService
     /// </summary>
     /// <param name="fgrd_fgr"></param>
     /// <param name="fgrd_line"></param>
- [WebMethod(Description = "删除入库单.")]
+    [WebMethod]
     public void sp_fgrd_delete(string fgrd_fgr, int fgrd_line)
     {
 
@@ -1670,7 +1453,7 @@ public class WebService : System.Web.Services.WebService
    /// </summary>
    /// <param name="movd_mov"></param>
    /// <param name="movd_line"></param>
-     [WebMethod(Description = "删除转仓单.")]
+    [WebMethod]
     public void sp_movd_delete(string movd_mov, int movd_line)
     {
         string msg = "[请联系统管理员] 未知错误！";
@@ -1718,7 +1501,7 @@ public class WebService : System.Web.Services.WebService
             for (int a = 0; a < tmpDS.Tables.Count; a++)
             {
                 dt = tmpDS.Tables[a];
-                Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
+                Json.Append(tmpDS.Tables[a].TableName.ToString() + ":[");
                 if (dt.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -1772,7 +1555,7 @@ public class WebService : System.Web.Services.WebService
             for (int a = 0; a < tmpDS.Tables.Count; a++)
             {
                 dt = tmpDS.Tables[a];
-                Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
+                Json.Append(tmpDS.Tables[a].TableName.ToString() + ":[");
                 if (dt.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -1827,7 +1610,7 @@ public class WebService : System.Web.Services.WebService
             for (int a = 0; a < tmpDS.Tables.Count; a++)
             {
                 dt = tmpDS.Tables[a];
-                Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
+                Json.Append(tmpDS.Tables[a].TableName.ToString() + ":[");
                 if (dt.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -1884,7 +1667,7 @@ public class WebService : System.Web.Services.WebService
             {
                 dt = tmpDS.Tables[a];
               //    Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
-                Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
+               Json.Append(tmpDS.Tables[a].TableName.ToString() + ":[");
                 //  Json.Append("[");
                 if (dt.Rows.Count > 0)
                 {
@@ -1958,7 +1741,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="user_id"></param>
     /// <param name="menu_id"></param>
     /// <param name="sign"></param>
-     [WebMethod(Description = "格创4.0送货单过账.")]
+    [WebMethod]
     public void sp_sodnmt01_pst(string dn_dn, int check_sum, string user_id, string menu_id, int sign)
     {
         string msg = "[请联系统管理员] 未知错误！";
@@ -1994,7 +1777,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="user_id"></param>
     /// <param name="menu_id"></param>
     /// <param name="sign"></param>
-    [WebMethod(Description = "深圳送货单过账.")]
+    [WebMethod]
     public void sp_sodn_pst(string dn_dn, int check_sum, string user_id, string menu_id, int sign)
     {
         string msg = "[请联系统管理员] 未知错误！";
@@ -2033,7 +1816,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="user_id"></param>
     /// <param name="menu_id"></param>
     /// <param name="sign"></param>
-    [WebMethod(Description = "格创4.0iqc过账.")]
+    [WebMethod]
     public void sp_puiqmt01_pst(string iqc_iqc, int check_sum, string user_id, string menu_id, int sign)
     {
         string msg = "[请联系统管理员] 未知错误！";
@@ -2072,7 +1855,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="user_id"></param>
     /// <param name="menu_id"></param>
     /// <param name="sign"></param>
-   [WebMethod(Description = "入库单过账.")]
+    [WebMethod]
     public void sp_wofrmt01_pst(string fgr_fgr, int check_sum, string user_id, string menu_id, int sign)
     {
         string msg = "[请联系统管理员] 未知错误！";
@@ -2104,7 +1887,7 @@ public class WebService : System.Web.Services.WebService
         Context.Response.End();
     }
     //选择入库单据 sp_fgrd_query
-    [WebMethod(Description = "选择入库单据.")]
+    [WebMethod]
     public void sp_fgrd_query(string fgrd_fgr)
     {
         StringBuilder Json = new StringBuilder();
@@ -2157,7 +1940,7 @@ public class WebService : System.Web.Services.WebService
     /// </summary>
     /// <param name="movd_mov"></param>
 
-      [WebMethod(Description = "选择单据.")]
+    [WebMethod]
     public void sp_mov_movd_query(string movd_mov)
     {
         StringBuilder Json = new StringBuilder();
@@ -2207,7 +1990,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="mov_mov">备货单</param>
     /// <param name="time1">单据日期开始</param>
     /// <param name="time2">单据日期结束</param>
-     [WebMethod(Description = "查询备货单.")]
+    [WebMethod]
     public void sp_iqc_mstr_query(string iqc_iqc, string time1, string time2, string cust, int  pst)
     {
         StringBuilder Json = new StringBuilder();
@@ -2264,7 +2047,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="fgr_fgr">单号</param>
     /// <param name="time1">单据日期开始</param>
     /// <param name="time2">单据日期结束</param>
-   [WebMethod(Description = "查询入仓单.")]
+    [WebMethod]
     public void sp_fgr_fgr_query(string fgr_fgr, string time1, string time2, string wo_line, string fgrd_wo_nbr ,int pst)
     {
         StringBuilder Json = new StringBuilder();
@@ -2322,7 +2105,7 @@ public class WebService : System.Web.Services.WebService
     /// <param name="mov_mov">备货单</param>
     /// <param name="time1">单据日期开始</param>
     /// <param name="time2">单据日期结束</param>
-     [WebMethod(Description = "查询备货单.")]
+    [WebMethod]
     public void sp_mov_mov_query(string mov_mov, string time1, string time2, string movd_dna_nbr, string cust, int pst)
     {
         StringBuilder Json = new StringBuilder();
@@ -2465,76 +2248,19 @@ public class WebService : System.Web.Services.WebService
 
     }
     [WebMethod]
-    public void sp_select_exec(string sql)
-    {
-
-        StringBuilder Json = new StringBuilder();
-        OpenConnection();
-        SqlCommand comm = new SqlCommand("sp_select", Conn);
-        comm.CommandType = CommandType.StoredProcedure;
-        comm.Parameters.Add("@sql", SqlDbType.NVarChar, 300).Value = sql;
-        SqlDataAdapter sda = new SqlDataAdapter();
-        sda.SelectCommand = comm;
-        DataSet tmpDS = new DataSet();
-        sda.Fill(tmpDS);
-        CloseConnection();
-
-        DataTable dt = new DataTable();
-        if (tmpDS != null && tmpDS.Tables.Count > 0)
-        {
-            Json.Append("{");
-            for (int a = 0; a < tmpDS.Tables.Count; a++)
-            {
-                dt = tmpDS.Tables[a];
-                Json.Append("\"" + tmpDS.Tables[a].TableName.ToString() + "\":[");
-                //  Json.Append("[");
-                if (dt.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        Json.Append("{");
-                        for (int j = 0; j < dt.Columns.Count; j++)
-                        {
-                            Json.Append("\"" + dt.Columns[j].ColumnName.ToString() + "\":\"" + dt.Rows[i][j].ToString().Replace("\"", "“") + "\"");
-                            if (j < dt.Columns.Count - 1)
-                            {
-                                Json.Append(",");
-                            }
-                        }
-                        Json.Append("}");
-                        if (i < dt.Rows.Count - 1)
-                        {
-                            Json.Append(",");
-                        }
-                    }
-                }
-                Json.Append("]");
-                if (a < tmpDS.Tables.Count - 1)
-                {
-                    Json.Append(",");
-                }
-            }
-            Json.Append("}");
-        }
-
-        // Json.Append("]");
-        Context.Response.Charset = "utf-8";
-        Context.Response.ContentEncoding = System.Text.Encoding.UTF8;
-        Context.Response.Write(Json);
-        Context.Response.End();
-    }
-    [WebMethod]
-    public void sp_select_sql(string sql)
+    public void sp_select_loc()
     {
         
-  
-        OpenConnection();
-        SqlTransaction trans = Conn.BeginTransaction();//事物对象
+        string str = ConfigurationManager.ConnectionStrings[connstr_GC_SZ].ConnectionString;
+        //声明数据库连接
+        SqlConnection conn = new SqlConnection(str);//连接数据库
+        conn.Open();
+        SqlTransaction trans = conn.BeginTransaction();//事物对象
         try
         {
-           
+            string sql = "select loc_site,loc_loc,loc_desc,loc_type from gcerp40_demo.dbo.loc_mstr where loc_site='1200' ";
             SqlCommand comm = new SqlCommand();//数据操作对象
-            comm.Connection = Conn;//指定连接
+            comm.Connection = conn;//指定连接
             comm.Transaction = trans;//指定事物
             comm.CommandText = sql;
           //  com.ExecuteNonQuery();//执行该行
@@ -2543,7 +2269,7 @@ public class WebService : System.Web.Services.WebService
             DataTable dt = new DataTable();
             sda.Fill(dt);   
             trans.Commit();//如果全部执行完毕.提交
-         CloseConnection();  
+           
             StringBuilder Json = new StringBuilder();
             Json.Append("[");
             if (dt != null )
@@ -2749,7 +2475,7 @@ public class WebService : System.Web.Services.WebService
         // Response.Write("<br/> OK! ");
     }
     //---------------------------------
-      [WebMethod(Description = "登录.")]
+    [WebMethod]
     public void sp_login(string user, string passwor)
     {
         string pwd = Common.EncryptPWD(passwor);           //密码
@@ -2802,7 +2528,7 @@ public class WebService : System.Web.Services.WebService
 
     //-------------------
 
-     [WebMethod(Description = "未完成的生产单.")]
+    [WebMethod]
     public void sp_WoXiang(string wo_part, string wo_nbr, string wo_line, string wo_due_date1, string wo_due_date2, string wo_rel_date1, string wo_rel_date2)
     {
         StringBuilder Json = new StringBuilder();
@@ -2860,7 +2586,7 @@ public class WebService : System.Web.Services.WebService
 
 
 
-    [WebMethod(Description = "生成单号.")]
+    [WebMethod]
     public void sp_auto_nbr(string eff_date, string code_code)
     {
         StringBuilder Json = new StringBuilder();
@@ -2908,7 +2634,7 @@ public class WebService : System.Web.Services.WebService
         Context.Response.End();
     }
 
-  [WebMethod(Description = "查询通知单.")]
+    [WebMethod]
     public void sp_tong_zhi_dan(string site, string time1, string time2, string dna_cust, string dna_nbr, string pt_desc)
     {
         StringBuilder Json = new StringBuilder();
